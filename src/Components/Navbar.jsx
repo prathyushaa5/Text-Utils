@@ -24,13 +24,7 @@ export default function Navbar(props) {
             About
           </Link>
 
-          <a href="#services" className="hover:text-gray-300">
-            Services
-          </a>
           
-          <a href="#contact" className="hover:text-gray-300">
-            Contact
-          </a>
 
           {/* Toggle Mode Button */}
           <button

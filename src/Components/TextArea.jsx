@@ -20,7 +20,7 @@ const TextArea = (props) => {
   function tocapital() {
     if (text.length > 0) {
       let words = text
-        .split(" ")
+        .split(/\s+/)
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join(" ");
       setText(words);
@@ -34,8 +34,8 @@ const TextArea = (props) => {
   }
 
   function removespaces() {
-    if (text.length > 0) setText(text.split(" ").join(""));
-    props.showAlert("Removed spaces", "failure");
+    if (text.length > 0) setText(text.split(/\s+/).join(""));
+    props.showAlert("Removed spaces", "success");
   }
 
   function clear() {
@@ -43,6 +43,10 @@ const TextArea = (props) => {
     props.showAlert("Cleared", "success");
   }
 
+  function copytoclip(){
+    navigator.clipboard.writeText(text);
+    props.showAlert("Copied", "success");
+  }
   function len() {
     let n = text.length;
     let length = 0;
@@ -57,7 +61,7 @@ const TextArea = (props) => {
   function word() {
     let wordlen = 0;
     let sentence = text;
-    sentence.split(" ").map((word) => wordlen++);
+    sentence.split(/\s+/).map((word) => wordlen++);
     return wordlen;
   }
 
@@ -73,7 +77,7 @@ const TextArea = (props) => {
         </h1>
 
         <textarea
-          className="w-full h-40 p-4 border-2 border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all"
+          className="w-full h-40 p-4 border-2 border-gray-300 rounded-lg shadow-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all"
           placeholder="Write something here..."
           value={text}
           onChange={handleChange}
@@ -109,6 +113,12 @@ const TextArea = (props) => {
             onClick={removespaces}
           >
             Remove Spaces
+          </button>
+          <button
+            className="px-6 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white font-bold rounded-lg shadow-md hover:from-red-600 hover:to-red-800 focus:outline-none transition-transform transform hover:scale-105"
+            onClick={copytoclip}
+          >
+            Copy to Clipboard
           </button>
           <button
             className="px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-700 text-white font-bold rounded-lg shadow-md hover:from-yellow-600 hover:to-yellow-800 focus:outline-none transition-transform transform hover:scale-105"

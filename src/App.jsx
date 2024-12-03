@@ -46,8 +46,9 @@ function App() {
     <Router> 
 
     
-      <Alert alert={alert}/>
+      
       <Navbar  title="Text Utils" mode={darkMode} color={color}toggleMode={toggleMode } option={option}/>
+      <Alert alert={alert}/>
       <Routes>
         {/* Home Route */}
         <Route 

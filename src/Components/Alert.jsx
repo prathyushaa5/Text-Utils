@@ -8,7 +8,9 @@ export default function Alert(props) {
   };
 
   return (
-    props.alert && (
+
+    <div className='h-4'>
+   { props.alert && (
       <div
         className={`bg-${
           props.alert.type === 'success' ? 'green' : 'red'
@@ -22,6 +24,7 @@ export default function Alert(props) {
         <strong className="font-bold">{capitalize(props.alert.type)}:</strong>
         <span className="block sm:inline"> {props.alert.msg}</span>
       </div>
-    )
+    )}
+    </div>
   );
 }
